@@ -15,6 +15,13 @@ let satelliteStreets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/sate
 	accessToken: API_KEY
 });
 
+// We create a third tile layer that will be the background of our map.
+let dark = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v10/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+	attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
+	maxZoom: 18,
+	accessToken: API_KEY
+});
+
 // Create the map object with center, zoom level and default layer.
 let map = L.map('mapid', {
 	center: [40.7, -94.5],
@@ -147,8 +154,8 @@ legend.onAdd = function() {
   // 3. Use d3.json to make a call to get our Tectonic Plate geoJSON data.
   d3.json(("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson")).then(function(data) {
     
-  });
-});
+  //});
+//});
 
 // 4. Use the same style as the earthquake data.
 function styleInfo(feature) {
@@ -202,6 +209,7 @@ onEachFeature: function(feature, layer) {
 
 // 8. Add the major earthquakes layer to the map.
 majorEarthquakes.addTo(map);
+});
 
 // 9. Close the braces and parentheses for the major earthquake data.
 //});
@@ -246,6 +254,7 @@ legend.addTo(map);
   // Then add the tectonicplates layer to the map.
   tectonicPlates.addTo(map);
 
+  });
 });
 
 
